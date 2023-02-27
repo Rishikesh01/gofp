@@ -1,3 +1,3 @@
-module fp-golang
+module gofp
 
 go 1.19

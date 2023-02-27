@@ -1,62 +1,74 @@
-package fp_golang
+package gofp
 
-type Stream[T any] interface {
-	Iterator[T]
-	Filter(func(T) bool) Stream[T]
-	Map(func(T) T) Stream[T]
-	FlatMap(func(T) Stream[T]) Stream[T]
-	ForEach(func(T))
-	ToSlice() []T
+type Stream[T any] struct {
+	val  T
+	next func() *Stream[T]
 }
 
-func Map[IT, OT any](input Stream[IT], mapper func(IT) OT) Stream[OT] {
-	stream := NewList[OT]()
-	for input.HasNext() {
-		stream.Add(mapper(input.GetNext()))
+func Append[T any](stream1 *Stream[T], stream2 *Stream[T]) *Stream[T] {
+	if stream1 == nil {
+		return stream2
 	}
-
-	return stream.ToStream()
+	return &Stream[T]{
+		val: stream1.val,
+		next: func() *Stream[T] {
+			return Append(stream1.next(), stream2)
+		},
+	}
 }
 
-func FlatMap[IT, OT any](input Stream[IT], mapper func(IT) Stream[OT]) Stream[OT] {
-	stream := NewList[OT]()
-	for input.HasNext() {
-		val := mapper(input.GetNext())
-		for val.HasNext() {
-			stream.Add(val.GetNext())
+func FlatMap[T, U any](stream *Stream[T], f func(T) *Stream[U]) *Stream[U] {
+	if stream == nil {
+		return nil
+	}
+	return Append(f(stream.val), FlatMap(stream.next(), f))
+}
+func Map[T, U any](s *Stream[T], f func(T) U) *Stream[U] {
+	if s == nil {
+		return nil
+	}
+	return &Stream[U]{
+		val: f(s.val),
+		next: func() *Stream[U] {
+			return Map(s.next(), f)
+		},
+	}
+}
+func (s *Stream[T]) Filter(f func(T) bool) *Stream[T] {
+	for ; s != nil; s = s.next() {
+		if f(s.val) {
+			return &Stream[T]{
+				val: s.val,
+				next: func() *Stream[T] {
+					return s.next().Filter(f)
+				},
+			}
 		}
 	}
-
-	return stream.ToStream()
+	return s
 }
 
-func (a *arrayList[T]) Filter(f func(T) bool) Stream[T] {
-	filtered := arrayList[T]{}
-	for a.HasNext() {
-		val := a.GetNext()
-		if f(val) {
-			filtered.array = append(filtered.array, val)
-		}
-
-	}
-
-	return &filtered
-}
-
-func (a *arrayList[T]) Map(f func(T) T) Stream[T] {
-	return Map[T, T](a, f)
-}
-
-func (a *arrayList[T]) FlatMap(f func(T) Stream[T]) Stream[T] {
-	return FlatMap[T, T](a, f)
-}
-
-func (a *arrayList[T]) ForEach(f func(T)) {
-	for a.HasNext() {
-		f(a.GetNext())
+func (s *Stream[T]) ForEach(f func(T)) {
+	for ; s != nil; s = s.next() {
+		f(s.val)
 	}
 }
+func (s *Stream[T]) ToSlice() []T {
+	var result []T
+	s.ForEach(func(value T) {
+		result = append(result, value)
+	})
+	return result
+}
 
-func (a *arrayList[T]) ToSlice() []T {
-	return a.array
+func NewStreamFromSlice[T any](arr []T) *Stream[T] {
+	if len(arr) == 0 {
+		return nil
+	}
+	return &Stream[T]{
+		val: arr[0],
+		next: func() *Stream[T] {
+			return NewStreamFromSlice(arr[1:])
+		},
+	}
 }

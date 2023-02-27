@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55ded9c1-dc90-430f-a8d5-7dad6dfdc6ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fp-golang.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iterator.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/list.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/map.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/stream.go" afterDir="false" />
+    <list default="true" id="55ded9c1-dc90-430f-a8d5-7dad6dfdc6ce" name="Changes" comment="first commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/iterator.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/list.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/map.go" beforeDir="false" afterPath="$PROJECT_DIR$/optional.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stream.go" beforeDir="false" afterPath="$PROJECT_DIR$/stream.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +50,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -66,7 +62,7 @@
       <recent name="$PROJECT_DIR$/stream" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build fp-golang/cmd">
+  <component name="RunManager" selected="Go Test.BenchmarkMap in fp-golang">
     <configuration name="go build fp-golang/cmd" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="fp-golang" />
       <working_directory value="$PROJECT_DIR$" />
@@ -74,6 +70,17 @@
       <package value="fp-golang/cmd" />
       <directory value="$PROJECT_DIR$" />
       <filePath value="$PROJECT_DIR$/cmd/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="BenchmarkMap in fp-golang" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="fp-golang" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="fp-golang" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gobench" />
+      <pattern value="^\QBenchmarkMap\E$" />
       <method v="2" />
     </configuration>
     <configuration name="TestNewList in fp-golang" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
@@ -89,6 +96,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Go Test.BenchmarkMap in fp-golang" />
         <item itemvalue="Go Build.go build fp-golang/cmd" />
         <item itemvalue="Go Test.TestNewList in fp-golang" />
       </list>
@@ -112,12 +120,33 @@
       <workItem from="1674320326011" duration="1181000" />
       <workItem from="1674579064872" duration="7383000" />
       <workItem from="1674619829599" duration="3390000" />
-      <workItem from="1674623308736" duration="2889000" />
+      <workItem from="1674623308736" duration="4956000" />
+      <workItem from="1674628729205" duration="1244000" />
+      <workItem from="1674630111835" duration="652000" />
+      <workItem from="1674648928554" duration="2746000" />
+      <workItem from="1674667258903" duration="2478000" />
+      <workItem from="1674671897954" duration="752000" />
+      <workItem from="1677310472850" duration="99000" />
+      <workItem from="1677322425094" duration="4045000" />
+      <workItem from="1677341089304" duration="3588000" />
+      <workItem from="1677505758872" duration="1458000" />
     </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <created>1674626831614</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1674626831614</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
