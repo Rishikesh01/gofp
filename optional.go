@@ -5,9 +5,8 @@ import "reflect"
 type Optional[T any] interface {
 	IsPresent() bool
 	IsEmpty() bool
-	IfPresent() Stream[T]
 	OrElse(something T) T
-	OrElseGet(func() T) T
+	OrElseGet(func() T) func() T
 	OrELseError(err error) (T, error)
 	Get() T
 }
@@ -39,27 +38,18 @@ func (o *optional[T]) IsEmpty() bool {
 	return !o.IsPresent()
 }
 
-func (o *optional[T]) IfPresent() Stream[T] {
-	//TODO implement me
-	panic("implement me")
-}
-
 func (o *optional[T]) OrElse(something T) T {
-	//TODO implement me
-	panic("implement me")
+	return something
 }
 
-func (o *optional[T]) OrElseGet(f func() T) T {
-	//TODO implement me
-	panic("implement me")
+func (o *optional[T]) OrElseGet(f func() T) func() T {
+	return f
 }
 
 func (o *optional[T]) OrELseError(err error) (T, error) {
-	//TODO implement me
-	panic("implement me")
+	return o.val, err
 }
 
 func (o *optional[T]) Get() T {
-	//TODO implement me
-	panic("implement me")
+	return o.val
 }
